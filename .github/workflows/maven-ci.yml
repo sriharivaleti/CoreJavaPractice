@@ -1,0 +1,41 @@
+name: Java CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ai-review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: AI Code Review
+        run: |
+          echo "Running AI review BEFORE build..."
+          
+          grep -r "System.out.println" . && echo "❌ Avoid System.out.println" || echo "✅ Clean logs"
+          
+          grep -r "TODO" . && echo "⚠️ Found TODOs" || echo "✅ No TODOs"
+  build:
+    needs: ai-review   # 👈 build waits for review
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Java 23
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 23
+          cache: maven
+
+      - name: Build and Test
+        run: mvn clean test

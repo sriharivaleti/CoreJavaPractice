@@ -140,6 +140,44 @@ Java 8 introduced several modern concurrency improvements, including easier func
 
 Use this section as a quick Java 8 feature reference while working through the Stream API challenge set.
 
+## Java version
+
+- This repository uses **Java 17** as the minimum supported version.
+- When compiling or running locally, set `JAVA_HOME` to a Java 17 JDK and use `--release 17` or a Java 17-compatible build tool configuration.
+
+## GitHub PR workflow
+
+Use the following workflow for feature branches and pull requests:
+
+1. Start from the `main` branch and make sure it is up to date:
+   ```bash
+   git checkout main
+   git pull origin main
+   ```
+2. Create a new topic branch for your work:
+   ```bash
+   git checkout -b feature/java17-stream-challenges
+   ```
+3. Make your changes and commit them with clear, focused messages:
+   ```bash
+   git add README.md STREAM_API_CHALLENGES.md
+   git commit -m "Add Java 17 PR workflow and stream API details"
+   ```
+4. Push the branch to GitHub:
+   ```bash
+   git push -u origin feature/java17-stream-challenges
+   ```
+5. Open a pull request from your branch into `main`.
+6. Request review, address comments, and update the branch as needed.
+7. Once approved, merge the PR using GitHub's merge workflow.
+
+Recommended PR best practices:
+
+- Keep each PR scoped to a single feature or fix.
+- Include a descriptive title and summary.
+- Link to related issues or goals if applicable.
+- Run local tests and verify Java 17 compatibility before submitting.
+
 ## Git Creation Steps
 
 Follow these steps to create the repository, add the Stream API challenge resource, and push the changes to GitHub.
